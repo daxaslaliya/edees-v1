@@ -1,0 +1,6 @@
+# Used only if you deploy on Netlify
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"

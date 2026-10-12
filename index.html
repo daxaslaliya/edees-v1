@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EDEÈS — Rarecraft Jewelry</title>
+<meta name="description" content="EDEÈS Rarecraft Jewelry. Hand-finished rings, necklaces, earrings and bracelets in gold, silver and natural stones.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#66000f">
+<link rel="canonical" href="https://yourdomain.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EDEÈS — Rarecraft Jewelry">
+<meta property="og:description" content="Hand-finished rings, necklaces, earrings and bracelets in gold, silver and natural stones.">
+<meta property="og:image" content="https://yourdomain.com/images/hero.jpg">
+<meta property="og:url" content="https://yourdomain.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<!--
+  HOW TO REPLACE IMAGES & LOGO
+  Create a folder called "images" next to this file and drop in files with these exact names:
+    logo.png (white/ivory logo on transparent background), hero.jpg, cat-rings.jpg, cat-necklaces.jpg,
+    cat-earrings.jpg, cat-bracelets.jpg, p1.jpg ... p8.jpg (product photos), story.jpg, banner.jpg, journal-1.jpg ... journal-3.jpg
+  Until a file exists, a labelled placeholder is shown. Change product names/prices in the PRODUCTS array near the bottom.
+-->
+<style>
+:root{
+  --wine:#66000f; --wine-deep:#47000a; --ivory:#faf6f2; --blush:#efe2dc; --gold:#c4a574; --ink:#2b0a10; --muted:#7a5d62;
+  --serif:'Bodoni Moda','Didot','Playfair Display',Georgia,serif; --sans:'Jost','Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--ivory);line-height:1.7;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.15}
+h2{font-size:clamp(1.9rem,3.4vw,2.8rem);letter-spacing:.01em}
+.lead{color:var(--muted);max-width:52ch}
+
+/* image placeholders: img sits on top; if missing, label shows */
+.img{position:relative;overflow:hidden;background:linear-gradient(145deg,#e9d6cf,#d9bfb6);display:block}
+.img::after{content:attr(data-file);position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:12px;font-size:.75rem;letter-spacing:.06em;color:var(--wine);opacity:.55}
+.img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:transform .9s ease}
+a:hover .img img,.card:hover .img img{transform:scale(1.04)}
+
+/* buttons */
+.btn{display:inline-block;padding:14px 34px;border:1px solid currentColor;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;transition:.3s}
+.btn-light{color:var(--ivory)}.btn-light:hover{background:var(--ivory);color:var(--wine)}
+.btn-wine{color:var(--wine)}.btn-wine:hover{background:var(--wine);color:var(--ivory)}
+
+/* top bar + header */
+.top{background:var(--wine-deep);color:var(--blush);text-align:center;font-size:.78rem;letter-spacing:.08em;padding:8px 12px}
+header{background:var(--wine);color:var(--ivory);position:sticky;top:0;z-index:50}
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:84px}
+nav ul{display:flex;gap:30px;list-style:none;font-size:.9rem;letter-spacing:.06em}
+nav a{padding:6px 0;border-bottom:1px solid transparent;transition:.25s}
+nav a:hover{border-color:var(--gold)}
+.logo{display:block;text-align:center;line-height:1}
+.logo img{height:46px;width:auto;margin:0 auto}
+.logo span{font-family:var(--serif);font-size:2rem;letter-spacing:.06em}
+.logo small{display:block;font-size:.6rem;letter-spacing:.5em;margin-top:6px;padding-left:.5em}
+.logo:not(.nologo) span,.logo:not(.nologo) small{display:none}
+.icons{display:flex;justify-content:flex-end;gap:18px;align-items:center}
+.icons button{position:relative;display:grid;place-items:center;width:36px;height:36px}
+.icons svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.3}
+#count{position:absolute;top:0;right:-2px;background:var(--gold);color:var(--wine-deep);font-size:.65rem;font-weight:500;width:17px;height:17px;border-radius:50%;display:grid;place-items:center}
+.menu-btn{display:none}
+
+/* hero */
+.hero{background:var(--wine);color:var(--ivory);display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 130px);min-height:min(760px,calc(100vh - 130px))}
+.hero-text{display:flex;flex-direction:column;justify-content:center;padding:70px clamp(28px,7vw,110px);animation:rise 1.2s ease both}
+.hero h1{font-size:clamp(2.6rem,5.2vw,4.6rem);font-style:italic;margin-bottom:22px}
+.hero p{color:var(--blush);max-width:42ch;margin-bottom:38px}
+.hero .img{min-height:420px}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* sections */
+section{padding:100px 0}
+.head{text-align:center;margin-bottom:56px}
+.head .lead{margin:14px auto 0}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat .img{aspect-ratio:3/4}
+.cat h3{font-size:1.4rem;text-align:center;margin-top:16px}
+.cat span{display:block;text-align:center;font-size:.85rem;color:var(--muted)}
+
+/* products */
+.filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:44px}
+.filters button{padding:8px 22px;font-size:.9rem;border-bottom:1px solid transparent;color:var(--muted);transition:.25s}
+.filters button.on,.filters button:hover{color:var(--wine);border-color:var(--wine)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px 22px}
+.card{position:relative}
+.card .img{aspect-ratio:4/5}
+.card h3{font-family:var(--sans);font-size:1rem;font-weight:400;margin-top:14px}
+.card .meta{color:var(--muted);font-size:.85rem}
+.card .price{color:var(--wine);margin-top:2px}
+.wish{position:absolute;top:12px;right:12px;z-index:2;width:34px;height:34px;display:grid;place-items:center;background:rgba(250,246,242,.9);border-radius:50%}
+.wish svg{width:16px;height:16px;fill:none;stroke:var(--wine);stroke-width:1.5}
+.wish.on svg{fill:var(--wine)}
+.add{width:100%;margin-top:12px;padding:11px;border:1px solid var(--wine);color:var(--wine);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;transition:.25s}
+.add:hover{background:var(--wine);color:var(--ivory)}
+
+/* story */
+.story{background:var(--blush)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.split .img{aspect-ratio:4/5}
+.story h2{margin-bottom:22px}
+.story p{margin-bottom:16px;max-width:50ch;color:#5a3d43}
+.story .btn{margin-top:14px}
+
+/* promise */
+.promise{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center}
+.promise h3{font-size:1.25rem;margin-bottom:8px;color:var(--wine)}
+.promise p{font-size:.92rem;color:var(--muted)}
+
+/* banner */
+.banner{position:relative;color:var(--ivory);text-align:center;padding:0}
+.banner .img{height:480px}
+.banner .over{position:absolute;inset:0;z-index:2;background:rgba(71,0,10,.62);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.banner h2{font-style:italic;margin-bottom:26px;max-width:18ch}
+
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:50px}
+blockquote{font-family:var(--serif);font-size:1.25rem;line-height:1.5;font-style:italic}
+cite{display:block;margin-top:16px;font-style:normal;font-family:var(--sans);font-size:.88rem;color:var(--muted)}
+
+/* journal */
+.journal{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.journal .img{aspect-ratio:4/3}
+.journal h3{font-size:1.3rem;margin-top:16px}
+.journal p{font-size:.92rem;color:var(--muted)}
+
+/* newsletter + footer */
+.news{background:var(--wine);color:var(--ivory);text-align:center}
+.news p{color:var(--blush);margin:12px auto 30px;max-width:46ch}
+.news form{display:flex;max-width:480px;margin:0 auto;border-bottom:1px solid var(--ivory)}
+.news input{flex:1;background:none;border:0;color:var(--ivory);padding:12px 4px;font:inherit;outline:none}
+.news input::placeholder{color:#d9b9b9}
+.news form button{letter-spacing:.16em;text-transform:uppercase;font-size:.78rem;padding:0 6px}
+#nmsg{margin-top:14px;min-height:1.5em;font-size:.9rem;color:var(--gold)}
+footer{background:var(--wine-deep);color:var(--blush);padding:70px 0 30px;font-size:.92rem}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:50px}
+footer h4{font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--ivory);margin-bottom:14px}
+footer ul{list-style:none}footer li{margin-bottom:8px}
+footer a:hover{color:var(--gold)}
+.fbrand .logo{text-align:left}.fbrand .logo img{margin:0;height:40px}
+.fbrand p{margin-top:16px;max-width:30ch}
+.copy{border-top:1px solid rgba(255,255,255,.14);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem}
+
+/* cart drawer */
+.shade{position:fixed;inset:0;background:rgba(43,10,16,.5);opacity:0;pointer-events:none;transition:.3s;z-index:90}
+.shade.on{opacity:1;pointer-events:auto}
+aside{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:var(--ivory);z-index:100;transform:translateX(100%);transition:transform .4s ease;display:flex;flex-direction:column}
+aside.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--blush)}
+.dh h3{font-size:1.5rem}
+#items{flex:1;overflow:auto;padding:12px 26px}
+.row{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--blush)}
+.row .img{width:72px;height:90px}
+.row h4{font-weight:400;font-size:.95rem}
+.qty{display:flex;align-items:center;gap:10px;margin-top:6px;font-size:.9rem}
+.qty button{width:24px;height:24px;border:1px solid var(--muted);border-radius:50%;line-height:1}
+.rm{font-size:.8rem;color:var(--muted);text-decoration:underline}
+.empty{text-align:center;color:var(--muted);padding:60px 0}
+.df{padding:22px 26px;border-top:1px solid var(--blush)}
+.tot{display:flex;justify-content:space-between;margin-bottom:6px;font-size:1.05rem}
+.df small{color:var(--muted);display:block;margin-bottom:16px}
+.df .btn{width:100%;text-align:center;background:var(--wine);color:var(--ivory)}
+.df .btn:hover{background:var(--wine-deep)}
+
+/* responsive */
+@media(max-width:980px){
+  .grid,.cats,.promise{grid-template-columns:repeat(2,1fr)}
+  .hero,.split{grid-template-columns:1fr}
+  .hero .img{min-height:340px;order:-1}
+  .split{gap:40px}.reviews,.journal{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  section{padding:70px 0}
+}
+@media(max-width:760px){
+  .bar{grid-template-columns:auto 1fr auto;height:72px}
+  .menu-btn{display:grid}
+  nav{position:absolute;top:100%;left:0;right:0;background:var(--wine);max-height:0;overflow:hidden;transition:max-height .35s}
+  nav.open{max-height:340px}
+  nav ul{flex-direction:column;gap:0;padding:8px 28px 20px}
+  nav li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+  .logo img{height:32px}.logo span{font-size:1.6rem}
+  .grid{gap:28px 14px}
+}
+@media(max-width:480px){.cats,.grid{grid-template-columns:1fr 1fr;gap:14px}.fgrid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="top">Complimentary insured shipping across India on orders above ₹25,000</div>
+
+<header>
+  <div class="wrap bar">
+    <div>
+      <button class="menu-btn icons" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+      <nav id="nav" aria-label="Main">
+        <ul>
+          <li><a href="#collections">Collections</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#story">Our craft</a></li>
+          <li><a href="#journal">Journal</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <a href="#" class="logo" aria-label="EDEÈS home">
+      <img src="images/Edees-logo02.png" alt="EDEÈS Rarecraft Jewelry" onerror="this.parentNode.classList.add('nologo');this.remove()">
+      <span>EDEÈS</span><small>RARECRAFT JEWELRY</small>
+    </a>
+    <div class="icons">
+      <button aria-label="Wishlist" onclick="document.getElementById('shop').scrollIntoView()"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.4-7 10-7 10z"/></svg></button>
+      <button id="bagBtn" aria-label="Open bag"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8zM9 8V6a3 3 0 0 1 6 0v2"/></svg><span id="count">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <h1>Rare craft, made to be worn for a lifetime.</h1>
+    <p>Rings, necklaces, earrings and bracelets shaped by hand in gold, silver and natural stones. Each piece is finished slowly and made to last.</p>
+    <div><a href="#shop" class="btn btn-light">Shop the collection</a></div>
+  </div>
+  <div class="img" data-file="images/hero.jpg  (1200×1500)"><img src="images/hero01.png" alt="EDEÈS featured jewelry" onerror="this.remove()"></div>
+</div>
+
+<!-- CATEGORIES -->
+<section id="collections">
+  <div class="wrap">
+    <div class="head"><h2>Shop by category</h2><p class="lead">Four everyday essentials, each in a small range of metals and stones.</p></div>
+    <div class="cats">
+      <a class="cat" href="#shop" data-go="Rings"><div class="img" data-file="images/cat-rings.jpg"><img src="images/product01.png" alt="Rings" onerror="this.remove()"></div><h3>Rings</h3><span>Solitaires, bands, stackables</span></a>
+      <a class="cat" href="#shop" data-go="Necklaces"><div class="img" data-file="images/cat-necklaces.jpg"><img src="images/product02.png" alt="Necklaces" onerror="this.remove()"></div><h3>Necklaces</h3><span>Pendants, chains, chokers</span></a>
+      <a class="cat" href="#shop" data-go="Earrings"><div class="img" data-file="images/cat-earrings.jpg"><img src="images/product03.png" alt="Earrings" onerror="this.remove()"></div><h3>Earrings</h3><span>Studs, hoops, drops</span></a>
+      <a class="cat" href="#shop" data-go="Bracelets"><div class="img" data-file="images/cat-bracelets.jpg"><img src="images/product04.png" alt="Bracelets" onerror="this.remove()"></div><h3>Bracelets</h3><span>Bangles, cuffs, chains</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop" style="padding-top:20px">
+  <div class="wrap">
+    <div class="head"><h2>The collection</h2></div>
+    <div class="filters" id="filters" role="tablist"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="wrap split">
+    <div class="img" data-file="images/story.jpg  (1000×1250)"><img src="images/story.jpg" alt="Jeweler at work" onerror="this.remove()"></div>
+    <div>
+      <h2>Made slowly, by hand</h2>
+      <p>EDEÈS began with a simple idea: jewelry should be rare because of the craft behind it, not the label on it. Every design starts as a sketch, is cast in small batches and is set, filed and polished by skilled artisans.</p>
+      <p>We work with hallmarked gold, sterling silver and ethically sourced stones, and we keep each collection small so every piece gets proper attention.</p>
+      <a href="#contact" class="btn btn-wine">Visit our studio</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<section>
+  <div class="wrap promise">
+    <div><h3>Hallmarked metals</h3><p>Gold and silver certified for purity, with a BIS hallmark where applicable.</p></div>
+    <div><h3>Certified stones</h3><p>Diamonds and gemstones come with authenticity certificates.</p></div>
+    <div><h3>Insured delivery</h3><p>Every order ships fully insured and in signature packaging.</p></div>
+    <div><h3>Lifetime care</h3><p>Free cleaning and polishing for as long as you own the piece.</p></div>
+  </div>
+</section>
+
+<!-- BANNER -->
+<section class="banner" style="padding:0">
+  <div class="img" data-file="images/banner.jpg  (1920×800)"><img src="images/banner.jpg" alt="" onerror="this.remove()"></div>
+  <div class="over"><h2>Made to order, just for you</h2><a href="#contact" class="btn btn-light">Book a consultation</a></div>
+</section>
+
+<!-- REVIEWS -->
+<section>
+  <div class="wrap">
+    <div class="head"><h2>Kind words</h2></div>
+    <div class="reviews">
+      <blockquote>“The finish is beautiful. It feels like something made for me, not picked off a shelf.”<cite>Aanya S., Ahmedabad</cite></blockquote>
+      <blockquote>“We chose our wedding bands here. The team was patient and the result was perfect.”<cite>Riya &amp; Karan, Surat</cite></blockquote>
+      <blockquote>“Delivered on time, packed with care, and exactly as shown in the photos.”<cite>Meera P., Mumbai</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNAL -->
+<section id="journal" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><h2>From the journal</h2></div>
+    <div class="journal">
+      <a href="#"><div class="img" data-file="images/journal-1.jpg"><img src="images/journal-1.jpg" alt="" onerror="this.remove()"></div><h3>How to choose your first solitaire</h3><p>Cut, clarity and setting, explained simply.</p></a>
+      <a href="#"><div class="img" data-file="images/journal-2.jpg"><img src="images/journal-2.jpg" alt="" onerror="this.remove()"></div><h3>Caring for gold and silver at home</h3><p>Easy habits that keep your pieces bright.</p></a>
+      <a href="#"><div class="img" data-file="images/journal-3.jpg"><img src="images/journal-3.jpg" alt="" onerror="this.remove()"></div><h3>Layering necklaces without the clutter</h3><p>Three combinations that always work.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="news">
+  <div class="wrap">
+    <h2>Join the EDEÈS circle</h2>
+    <p>Hear first about new collections and private viewings. We write rarely.</p>
+    <form id="nform"><input type="email" id="nemail" placeholder="Your email address" aria-label="Email address" required><button type="submit">Subscribe</button></form>
+    <div id="nmsg" role="status"></div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <a href="#" class="logo" aria-label="EDEÈS home"><img src="images/Edees-logo02.png" alt="EDEÈS" onerror="this.parentNode.classList.add('nologo');this.remove()"><span>EDEÈS</span><small>RARECRAFT JEWELRY</small></a>
+        <p>Hand-finished jewelry in gold, silver and natural stones.</p>
+      </div>
+      <div><h4>Shop</h4><ul><li><a href="#shop" data-go="Rings">Rings</a></li><li><a href="#shop" data-go="Necklaces">Necklaces</a></li><li><a href="#shop" data-go="Earrings">Earrings</a></li><li><a href="#shop" data-go="Bracelets">Bracelets</a></li></ul></div>
+      <div><h4>Help</h4><ul><li><a href="#">Shipping &amp; returns</a></li><li><a href="#">Ring size guide</a></li><li><a href="#">Jewelry care</a></li><li><a href="#">Privacy policy</a></li></ul></div>
+      <div><h4>Visit &amp; contact</h4><ul><li>Your Street Address<br>Ahmedabad, Gujarat 380000</li><li><a href="tel:+910000000000">+91 00000 00000</a></li><li><a href="mailto:hello@edees.in">hello@edees.in</a></li><li>Mon–Sat, 11 am – 8 pm</li></ul></div>
+    </div>
+    <div class="copy"><span>© <span id="yr"></span> EDEÈS Rarecraft Jewelry. All rights reserved.</span><span><a href="#">Instagram</a> &nbsp;·&nbsp; <a href="#">Pinterest</a> &nbsp;·&nbsp; <a href="#">WhatsApp</a></span></div>
+  </div>
+</footer>
+
+<!-- CART -->
+<div class="shade" id="shade"></div>
+<aside id="drawer" aria-label="Shopping bag" aria-hidden="true">
+  <div class="dh"><h3>Your bag</h3><button id="closeBag" aria-label="Close bag">✕</button></div>
+  <div id="items"></div>
+  <div class="df"><div class="tot"><span>Subtotal</span><strong id="sub">₹0</strong></div><small>Shipping and taxes are calculated at checkout.</small><a href="#contact" class="btn" id="checkout">Checkout</a></div>
+</aside>
+
+<script>
+/* ===== EDIT YOUR PRODUCTS HERE ===== */
+const PRODUCTS = [
+  {id:1,name:"Aurelia Solitaire Ring",cat:"Rings",metal:"18k yellow gold, diamond",price:68500,img:"images/p1.jpg"},
+  {id:2,name:"Linea Stacking Band",cat:"Rings",metal:"18k rose gold",price:24800,img:"images/p2.jpg"},
+  {id:3,name:"Noor Pendant",cat:"Necklaces",metal:"Sterling silver, moonstone",price:12900,img:"images/p3.jpg"},
+  {id:4,name:"Seraphine Chain",cat:"Necklaces",metal:"18k yellow gold",price:38200,img:"images/p4.jpg"},
+  {id:5,name:"Pearl Drop Earrings",cat:"Earrings",metal:"14k gold, freshwater pearl",price:18600,img:"images/p5.jpg"},
+  {id:6,name:"Orbit Hoops",cat:"Earrings",metal:"Sterling silver",price:7400,img:"images/p6.jpg"},
+  {id:7,name:"Valen Cuff",cat:"Bracelets",metal:"18k yellow gold",price:52000,img:"images/p7.jpg"},
+  {id:8,name:"Tessa Tennis Bracelet",cat:"Bracelets",metal:"14k white gold, diamonds",price:94000,img:"images/p8.jpg"}
+];
+const $=s=>document.querySelector(s), fmt=n=>"₹"+n.toLocaleString("en-IN");
+let cart={}, wish={}, filter="All";
+try{cart=JSON.parse(localStorage.getItem("edees-cart")||"{}");wish=JSON.parse(localStorage.getItem("edees-wish")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("edees-cart",JSON.stringify(cart));localStorage.setItem("edees-wish",JSON.stringify(wish))}catch(e){}};
+const heart='<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.4-7 10-7 10z"/></svg>';
+
+function filters(){
+  const cats=["All",...new Set(PRODUCTS.map(p=>p.cat))];
+  $("#filters").innerHTML=cats.map(c=>`<button class="${c===filter?"on":""}" data-f="${c}">${c}</button>`).join("");
+}
+function grid(){
+  $("#grid").innerHTML=PRODUCTS.filter(p=>filter==="All"||p.cat===filter).map(p=>`
+  <article class="card">
+    <button class="wish ${wish[p.id]?"on":""}" data-w="${p.id}" aria-label="Save ${p.name}">${heart}</button>
+    <div class="img" data-file="${p.img}"><img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.remove()"></div>
+    <h3>${p.name}</h3><div class="meta">${p.metal}</div><div class="price">${fmt(p.price)}</div>
+    <button class="add" data-a="${p.id}">Add to bag</button>
+  </article>`).join("");
+}
+function bag(){
+  const ids=Object.keys(cart).filter(k=>cart[k]>0);
+  $("#count").textContent=ids.reduce((s,k)=>s+cart[k],0);
+  $("#items").innerHTML=ids.length?ids.map(k=>{const p=PRODUCTS.find(x=>x.id==k);return `
+    <div class="row"><div class="img" data-file=""><img src="${p.img}" alt="" onerror="this.remove()"></div>
+    <div><h4>${p.name}</h4><div class="qty"><button data-q="${k}" data-d="-1" aria-label="Decrease">−</button>${cart[k]}<button data-q="${k}" data-d="1" aria-label="Increase">+</button></div></div>
+    <div style="text-align:right">${fmt(p.price*cart[k])}<br><button class="rm" data-r="${k}">Remove</button></div></div>`}).join(""):'<div class="empty">Your bag is empty.<br>Add a piece to begin.</div>';
+  $("#sub").textContent=fmt(ids.reduce((s,k)=>s+PRODUCTS.find(x=>x.id==k).price*cart[k],0));
+  save();
+}
+function drawer(open){
+  $("#drawer").classList.toggle("on",open);$("#shade").classList.toggle("on",open);
+  $("#drawer").setAttribute("aria-hidden",!open);
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-f],[data-w],[data-a],[data-q],[data-r],[data-go]");
+  if(!t)return;
+  if(t.dataset.f){filter=t.dataset.f;filters();grid()}
+  else if(t.dataset.go){filter=t.dataset.go;filters();grid()}
+  else if(t.dataset.w){wish[t.dataset.w]=!wish[t.dataset.w];t.classList.toggle("on");save()}
+  else if(t.dataset.a){cart[t.dataset.a]=(cart[t.dataset.a]||0)+1;bag();drawer(true)}
+  else if(t.dataset.q){cart[t.dataset.q]=Math.max(0,cart[t.dataset.q]+ +t.dataset.d);bag()}
+  else if(t.dataset.r){delete cart[t.dataset.r];bag()}
+});
+$("#bagBtn").onclick=()=>drawer(true);$("#closeBag").onclick=()=>drawer(false);$("#shade").onclick=()=>drawer(false);$("#checkout").onclick=()=>drawer(false);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")drawer(false)});
+$("#menuBtn").onclick=()=>{const o=$("#nav").classList.toggle("open");$("#menuBtn").setAttribute("aria-expanded",o)};
+$("#nav").addEventListener("click",e=>{if(e.target.tagName==="A")$("#nav").classList.remove("open")});
+$("#nform").onsubmit=e=>{e.preventDefault();$("#nmsg").textContent="Thank you. You are on the list.";$("#nemail").value=""};
+$("#yr").textContent=new Date().getFullYear();
+filters();grid();bag();
+</script>
+</body>
+</html>
